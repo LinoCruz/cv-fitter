@@ -2,7 +2,7 @@
 
 Author: Lino Cruz
 
-A web application to help users improve their CVs based on specific job descriptions. Users upload their CV and job requirements, and the system uses AI (e.g., GPT) to generate an improved version, which can be downloaded as a PDF.
+A web application to help users improve their CVs based on specific job descriptions. Users upload their CV and job requirements, and the system uses AI to generate an improved version, which can be downloaded as a PDF.
 
 ---
 
