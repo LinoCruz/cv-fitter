@@ -1,0 +1,11 @@
+# Python
+server/my-cv-env/
+*.pyc
+__pycache__/
+
+# Node
+client/node_modules/
+client/build/
+
+# OS files
+.DS_Store
