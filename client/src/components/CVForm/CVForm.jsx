@@ -127,7 +127,7 @@ const CVEnhancer = () => {
           </button>
         )}
       </div>
-
+ 
       {loading && (
         <div className={styles.loadingModal}>
           <div className={styles.loadingContent}>
@@ -135,6 +135,7 @@ const CVEnhancer = () => {
           </div>
         </div>
       )}
+
     </div>
   );
 };

@@ -9,6 +9,7 @@ function App() {
         <h1>CV Fitter</h1>
       </header>
       <CVForm />
+      <p className='author'>Author: <a href="https://www.linkedin.com/in/lino-cruz/">Lino Cruz</a></p>
     </div>
   );
 }
