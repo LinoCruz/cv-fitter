@@ -2,8 +2,8 @@
 
 /* Reset margins, paddings, and set box-sizing */
 * {
-    margin: 5px;
-    padding: 10px;
+    margin: 0px;
+    padding: 0px;
     box-sizing: border-box;
   }
   
