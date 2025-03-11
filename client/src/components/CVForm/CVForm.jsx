@@ -3,6 +3,8 @@ import styles from './CVForm.module.css';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 const CVEnhancer = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [jobDescription, setJobDescription] = useState('');
@@ -54,7 +56,7 @@ const CVEnhancer = () => {
       const formData = new FormData();
       formData.append('cv_file', selectedFile);
 
-      const uploadResponse = await fetch('http://127.0.0.1:5000/upload-cv', {
+      const uploadResponse = await fetch(`${API_URL}/upload-cv`, {
         method: 'POST',
         body: formData
       });
@@ -68,7 +70,7 @@ const CVEnhancer = () => {
       const cvText = uploadData.extracted_text_preview;
 
       // Now, call /improve-cv with the CV text and job description
-      const improveResponse = await fetch('http://127.0.0.1:5000/improve-cv', {
+      const improveResponse = await fetch(`${API_URL}/improve-cv`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
