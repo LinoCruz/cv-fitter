@@ -1,0 +1,23 @@
+/* globals.css */
+
+/* Reset margins, paddings, and set box-sizing */
+* {
+    margin: 5px;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  
+  /* Apply global styles to html and body */
+  html, body {
+    width: 100%;
+    height: 100%;
+    background-color: #68b6c4; /* Dark version of skyblue */
+    color: #ffffff;          /* Default text color (white) */
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+  
+  /* Ensure the root container takes full height */
+  #root {
+    min-height: 100vh;
+  }
+  

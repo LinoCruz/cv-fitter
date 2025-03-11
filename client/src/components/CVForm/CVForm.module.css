@@ -1,0 +1,49 @@
+.formContainer {
+    background-color: #ffffff; /* white */
+    margin: 2rem auto;
+    padding: 2rem;
+    width: 100%;
+    max-width: 600px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .formGroup {
+    margin-bottom: 1.5rem;
+  }
+  
+  .label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #800080; /* purple */
+    font-weight: bold;
+  }
+  
+  .inputFile,
+  .textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  .submitButton {
+    background-color: #800080; /* purple */
+    color: #ffffff; /* white */
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+  }
+  
+  .submitButton:hover {
+    background-color: #4B0082; /* darker purple */
+  }
+  
