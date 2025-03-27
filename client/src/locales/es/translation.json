@@ -1,0 +1,80 @@
+{
+    "header": {
+      "home": "Inicio",
+      "courses": "Cursos",
+      "login": "Iniciar Sesión",
+      "logout": "Cerrar Sesión"
+    },
+    "cvEnhancer": {
+      "title": "Mejora Tu Currículum",
+      "description": "Sube tu currículum y una descripción del trabajo para obtener mejoras adaptadas a los requisitos.",
+      "uploadLabel": "Sube tu currículum (PDF)",
+      "uploadPrompt": "Haz clic para subir o arrastra tu archivo de currículum",
+      "jobDescriptionLabel": "Descripción del Trabajo",
+      "jobDescriptionPlaceholder": "Ingresa la descripción del trabajo aquí...",
+      "enhanceButton": "Mejorar Currículum",
+      "loading": "Mejorando Tu Currículum",
+      "errorFileType": "Por favor sube un archivo PDF.",
+      "errorNoFile": "Por favor sube tu archivo de currículum.",
+      "errorNoJobDescription": "Por favor ingresa una descripción del trabajo.",
+      "errorProcessing": "Ocurrió un error al procesar tu currículum. Por favor, inténtalo de nuevo."
+    },
+    "enhancementResults": {
+      "title": "Mejora del Currículum Completa",
+      "description": "Tu currículum ha sido optimizado para la descripción del trabajo que proporcionaste.",
+      "changes": "Cambios Realizados",
+      "recommendations": "Recomendaciones",
+      "preview": "Tu Currículum Mejorado",
+      "download": "Descargar Currículum",
+      "startOver": "Mejorar Otro Currículum"
+    },
+    "changesListing": {
+      "noChanges": "No se requirieron cambios para tu currículum."
+    },
+    "recommendations": {
+      "noRecommendations": "No hay recomendaciones adicionales para este puesto.",
+      "browseCourses": "Explora cursos para mejorar tus habilidades"
+    },
+    "courses": {
+      "title": "Cursos",
+      "description": "Explora nuestra selección de cursos para mejorar tus habilidades y perspectivas profesionales.",
+      "recommendedDescription": "Cursos recomendados basados en tu currículum y los requisitos del trabajo.",
+      "searchPlaceholder": "Buscar cursos...",
+      "allCategories": "Todas las Categorías",
+      "categories": {
+        "programming": "Programación",
+        "design": "Diseño",
+        "softSkills": "Habilidades Blandas",
+        "management": "Gestión"
+      },
+      "showingRecommended": "Mostrando cursos recomendados basados en el análisis de tu currículum",
+      "viewAllCourses": "Ver todos los cursos",
+      "errorFetching": "Error al obtener los cursos. Por favor, inténtalo de nuevo.",
+      "noCourses": "No se encontraron cursos que coincidan con tus criterios."
+    },
+    "courseCard": {
+      "free": "Gratis",
+      "viewCourse": "Ver Curso"
+    },
+    "auth": {
+      "loginTitle": "Inicia sesión en tu cuenta",
+      "signupTitle": "Crea una cuenta",
+      "emailLabel": "Correo electrónico",
+      "passwordLabel": "Contraseña",
+      "confirmPasswordLabel": "Confirmar Contraseña",
+      "forgotPassword": "¿Olvidaste tu contraseña?",
+      "loginButton": "Iniciar sesión",
+      "signupButton": "Registrarse",
+      "orContinueWith": "O continuar con",
+      "alreadyHaveAccount": "¿Ya tienes una cuenta?",
+      "dontHaveAccount": "¿No tienes una cuenta?",
+      "login": "Iniciar sesión",
+      "signup": "Registrarse",
+      "passwordMismatch": "Las contraseñas no coinciden"
+    },
+    "footer": {
+      "copyright": "© 2025 CV Fitter. Todos los derechos reservados.",
+      "termsOfService": "Términos de Servicio",
+      "privacyPolicy": "Política de Privacidad"
+    }
+  }

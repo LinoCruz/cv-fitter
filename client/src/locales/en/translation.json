@@ -1,0 +1,80 @@
+{
+    "header": {
+      "home": "Home",
+      "courses": "Courses",
+      "login": "Login",
+      "logout": "Logout"
+    },
+    "cvEnhancer": {
+      "title": "Enhance Your CV",
+      "description": "Upload your CV and a job description to get tailored improvements that match the requirements.",
+      "uploadLabel": "Upload your CV (PDF)",
+      "uploadPrompt": "Click to upload or drag and drop your CV file",
+      "jobDescriptionLabel": "Job Description",
+      "jobDescriptionPlaceholder": "Enter the job description here...",
+      "enhanceButton": "Enhance CV",
+      "loading": "Enhancing Your CV",
+      "errorFileType": "Please upload a PDF file.",
+      "errorNoFile": "Please upload your CV file.",
+      "errorNoJobDescription": "Please enter a job description.",
+      "errorProcessing": "An error occurred while processing your CV. Please try again."
+    },
+    "enhancementResults": {
+      "title": "CV Enhancement Complete",
+      "description": "Your CV has been optimized for the job description you provided.",
+      "changes": "Changes Made",
+      "recommendations": "Recommendations",
+      "preview": "Your Enhanced CV",
+      "download": "Download CV",
+      "startOver": "Enhance Another CV"
+    },
+    "changesListing": {
+      "noChanges": "No changes were required for your CV."
+    },
+    "recommendations": {
+      "noRecommendations": "No additional recommendations for this position.",
+      "browseCourses": "Browse courses to improve your skills"
+    },
+    "courses": {
+      "title": "Courses",
+      "description": "Browse our selection of courses to enhance your skills and career prospects.",
+      "recommendedDescription": "Recommended courses based on your CV and job requirements.",
+      "searchPlaceholder": "Search for courses...",
+      "allCategories": "All Categories",
+      "categories": {
+        "programming": "Programming",
+        "design": "Design",
+        "softSkills": "Soft Skills",
+        "management": "Management"
+      },
+      "showingRecommended": "Showing recommended courses based on your CV analysis",
+      "viewAllCourses": "View all courses",
+      "errorFetching": "Error fetching courses. Please try again.",
+      "noCourses": "No courses found matching your criteria."
+    },
+    "courseCard": {
+      "free": "Free",
+      "viewCourse": "View Course"
+    },
+    "auth": {
+      "loginTitle": "Log in to your account",
+      "signupTitle": "Create an account",
+      "emailLabel": "Email",
+      "passwordLabel": "Password",
+      "confirmPasswordLabel": "Confirm Password",
+      "forgotPassword": "Forgot password?",
+      "loginButton": "Log in",
+      "signupButton": "Sign up",
+      "orContinueWith": "Or continue with",
+      "alreadyHaveAccount": "Already have an account?",
+      "dontHaveAccount": "Don't have an account?",
+      "login": "Log in",
+      "signup": "Sign up",
+      "passwordMismatch": "Passwords do not match"
+    },
+    "footer": {
+      "copyright": "© 2025 CV Fitter. All rights reserved.",
+      "termsOfService": "Terms of Service",
+      "privacyPolicy": "Privacy Policy"
+    }
+  }
