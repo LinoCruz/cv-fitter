@@ -1,47 +1,56 @@
-import React, { createContext, useState, useEffect } from 'react';
-import i18n from 'i18next';
-import { initReactI18next } from 'react-i18next';
+import React, { createContext, useState, useContext, useEffect } from 'react';
+
+// Import translations
 import enTranslations from '../locales/en/translation.json';
 import esTranslations from '../locales/es/translation.json';
 
-// Initialize i18next
-i18n
-  .use(initReactI18next)
-  .init({
-    resources: {
-      en: { translation: enTranslations },
-      es: { translation: esTranslations }
-    },
-    lng: localStorage.getItem('language') || 'en',
-    fallbackLng: 'en',
-    interpolation: {
-      escapeValue: false
-    }
+// Create context
+const LanguageContext = createContext();
+
+// Define all available translations
+const translations = {
+  en: enTranslations,
+  es: esTranslations
+};
+
+// Language provider component
+export function LanguageProvider({ children }) {
+  // Get initial language from localStorage or default to 'en'
+  const [language, setLanguage] = useState(() => {
+    const savedLanguage = localStorage.getItem('language');
+    return savedLanguage || 'en';
   });
 
-export const LanguageContext = createContext();
+  // Current translations based on selected language
+  const [t, setT] = useState(translations[language]);
 
-export const LanguageProvider = ({ children }) => {
-  // Initialize language from localStorage or default to English
-  const [language, setLanguage] = useState(localStorage.getItem('language') || 'en');
-  
-  const changeLanguage = (lang) => {
-    setLanguage(lang);
-    localStorage.setItem('language', lang);
-    i18n.changeLanguage(lang);
-    
-    // Set the language in the API service
-    window.dispatchEvent(new CustomEvent('languageChanged', { detail: { language: lang } }));
-  };
-  
-  // Set initial language
+  // Update localStorage and translations when language changes
   useEffect(() => {
-    i18n.changeLanguage(language);
+    localStorage.setItem('language', language);
+    setT(translations[language]);
   }, [language]);
 
+  // Switch language function
+  const changeLanguage = (newLanguage) => {
+    if (translations[newLanguage]) {
+      setLanguage(newLanguage);
+    }
+  };
+
   return (
-    <LanguageContext.Provider value={{ language, changeLanguage }}>
+    <LanguageContext.Provider value={{ language, changeLanguage, t }}>
       {children}
     </LanguageContext.Provider>
   );
-};
+}
+
+// Custom hook for using the language context
+export function useLanguage() {
+  const context = useContext(LanguageContext);
+  if (!context) {
+    throw new Error('useLanguage must be used within a LanguageProvider');
+  }
+  return context;
+}
+
+export default LanguageContext;

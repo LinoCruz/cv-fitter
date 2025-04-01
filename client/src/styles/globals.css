@@ -1,4 +1,12 @@
 /* globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Add any custom styles here */
+html {
+  scroll-behavior: smooth;
+}
 
 /* Reset margins, paddings, and set box-sizing */
 * {

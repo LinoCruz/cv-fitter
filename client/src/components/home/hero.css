@@ -1,0 +1,122 @@
+/* hero.css */
+.hero {
+    position: relative;
+    background: linear-gradient(to right, #60a5fa, #2dd4bf);
+    padding: 4rem 0;
+  }
+  
+  .hero-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  .hero-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .hero-text-column {
+    margin-bottom: 2rem;
+  }
+  
+  .hero-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: white;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+  
+  .hero-description {
+    font-size: 1.25rem;
+    color: white;
+    opacity: 0.9;
+    margin-bottom: 1.5rem;
+  }
+  
+  .hero-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .hero-button-primary {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: white;
+    color: #3b82f6;
+    font-weight: 500;
+    border-radius: 9999px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.2s;
+  }
+  
+  .hero-button-primary:hover {
+    background-color: #eff6ff;
+  }
+  
+  .hero-button-secondary {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: transparent;
+    color: white;
+    font-weight: 500;
+    border: 2px solid white;
+    border-radius: 9999px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.2s;
+  }
+  
+  .hero-button-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .hero-image-column {
+    width: 100%;
+  }
+  
+  .hero-image-container {
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(4px);
+    border-radius: 0.5rem;
+    padding: 1.25rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .hero-image {
+    border-radius: 0.5rem;
+    width: 50%;
+    margin: 0 auto;
+    display: block;
+  }
+  
+  /* Media queries for responsive design */
+  @media (min-width: 768px) {
+    .hero-content-wrapper {
+      flex-direction: row;
+      align-items: center;
+    }
+    
+    .hero-text-column {
+      width: 50%;
+      margin-bottom: 0;
+    }
+    
+    .hero-image-column {
+      width: 50%;
+    }
+    
+    .hero-title {
+      font-size: 3rem;
+    }
+    
+    .hero-buttons {
+      flex-direction: row;
+      gap: 1rem;
+    }
+  }
