@@ -82,5 +82,27 @@
       "intermediate": "Intermedio",
       "advanced": "Avanzado"
     }
+  },
+  "auth": {
+    "startForFree": "EMPIEZA GRATIS",
+    "welcome": "BIENVENIDO DE NUEVO",
+    "createAccount": "Crear cuenta nueva",
+    "logInToAccount": "Iniciar sesión",
+    "alreadyMember": "¿Ya eres miembro?",
+    "noAccount": "¿No tienes una cuenta?",
+    "logIn": "Iniciar sesión",
+    "signUp": "Regístrate",
+    "firstName": "Nombre",
+    "firstNamePlaceholder": "Ingresa tu nombre",
+    "lastName": "Apellido",
+    "lastNamePlaceholder": "Ingresa tu apellido",
+    "email": "Correo electrónico",
+    "emailPlaceholder": "tu.correo@ejemplo.com",
+    "password": "Contraseña",
+    "passwordPlaceholder": "Ingresa tu contraseña",
+    "rememberMe": "Recordarme",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "changeMethod": "Cambiar método",
+    "loginWithGoogle": "Iniciar con Google"
   }
 }
