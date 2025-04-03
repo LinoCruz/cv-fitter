@@ -1,37 +1,184 @@
 /* globals.css */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* Add any custom styles here */
-html {
-  scroll-behavior: smooth;
+/* CSS Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* Reset margins, paddings, and set box-sizing */
-* {
-    margin: 0px;
-    padding: 5px;
-    box-sizing: border-box;
-  }
-  
-  /* Apply global styles to html and body */
-  html, body {
-    width: 100%;
-    height: 100%;
-    background-color: #68b6c4; /* Dark version of skyblue */
-    color: #ffffff;          /* Default text color (white) */
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  }
-  
-  /* Ensure the root container takes full height */
-  #root {
-    min-height: 100vh;
-  }
-  
-.author{
-  color: black;
-  font-size: 15px;
-  font-weight: bold;
+html {
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
+}
 
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #ffffff;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: #1e293b;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* This will prevent overscroll bounce */
+  overflow-x: hidden;
+  /* Important to prevent the elastic bounce */
+  position: relative;
+}
+
+/* Fix for iOS and other mobile browsers */
+html, body {
+  overscroll-behavior: none;
+}
+
+.app {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+  width: 100%;
+  background-color: #ffffff;
+}
+
+/* Common container style */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+a {
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Button styles */
+.button {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 0.375rem;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.button-primary {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+}
+
+.button-primary:hover {
+  background-color: #2563eb;
+  text-decoration: none;
+}
+
+.button-secondary {
+  background-color: transparent;
+  color: #3b82f6;
+  border: 1px solid #3b82f6;
+}
+
+.button-secondary:hover {
+  background-color: #eff6ff;
+  text-decoration: none;
+}
+
+/* Form elements */
+input, textarea, select {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.375rem;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+/* Utility classes */
+.text-center {
+  text-align: center;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.gap-4 {
+  gap: 1rem;
+}
+
+.my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.rounded {
+  border-radius: 0.375rem;
+}
+
+.shadow {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Accessibility */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
 }

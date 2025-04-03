@@ -39,5 +39,48 @@
       "title": "Recommendations",
       "description": "Get personalized recommendations to improve your employment prospects."
     }
+  },
+  "courses": {
+    "pageTitle": "Browse Courses",
+    "pageSubtitle": "Enhance your skills with our curated selection of professional courses",
+    "bannerTitle": "Accelerate Your Career",
+    "bannerSubtitle": "Discover expert-led courses designed to help you master new skills and advance your career",
+    "search": "Search courses...",
+    "noCoursesFound": "No courses found matching your criteria",
+    "courseFound": "course found",
+    "coursesFound": "courses found",
+    "loadingMore": "Loading more courses...",
+    "viewDetails": "View Details",
+    "filters": {
+      "allCourses": "All Courses",
+      "allPrices": "All Prices",
+      "freeCourses": "Free Courses",
+      "underFifty": "Under $50",
+      "fiftyToHundred": "$50 - $100",
+      "hundredToOneFifty": "$100 - $150",
+      "overOneFifty": "Over $150"
+    },
+    "courseDetails": {
+      "free": "Free",
+      "level": "Level",
+      "duration": "Duration",
+      "published": "Published",
+      "description": "Description",
+      "highlights": "What You'll Learn",
+      "curriculum": "Curriculum",
+      "enrollNow": "Enroll Now"
+    },
+    "categories": {
+      "tech": "Technology",
+      "marketing": "Marketing",
+      "socialMedia": "Social Media",
+      "it": "IT & Cloud",
+      "design": "Design"
+    },
+    "levels": {
+      "beginner": "Beginner",
+      "intermediate": "Intermediate",
+      "advanced": "Advanced"
+    }
   }
 }

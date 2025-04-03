@@ -1,13 +1,20 @@
 import React from 'react';
 import Header from './Header';
+import HeaderHeroWrapper from './HeaderHeroWrapper';
 import Footer from './Footer';
 import { LanguageProvider } from '../../context/LanguageContext';
 
-function Layout({ children }) {
+function Layout({ children, showHero = true }) {
   return (
     <LanguageProvider>
       <div className="layout">
-        <Header />
+        {showHero ? (
+          <HeaderHeroWrapper />
+        ) : (
+          <div className="gradient-background">
+            <Header />
+          </div>
+        )}
         <main>{children}</main>
         <Footer />
       </div>
@@ -15,5 +22,5 @@ function Layout({ children }) {
   );
 }
 
-export { Header, Footer };
+export { Header, Footer, HeaderHeroWrapper };
 export default Layout;

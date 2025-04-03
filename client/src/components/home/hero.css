@@ -1,122 +1,157 @@
-/* hero.css */
+/* hero.css - Blue Theme */
 .hero {
-    position: relative;
-    background: linear-gradient(to right, #60a5fa, #2dd4bf);
-    padding: 4rem 0;
-  }
-  
-  .hero-container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
-  }
-  
+  position: relative;
+  padding: 4rem 0;
+  /* Background is transparent to show the gradient */
+}
+
+.hero-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.hero-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-text-column {
+  margin-bottom: 2rem;
+  text-align: center; /* Center text like in the image */
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: white;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.01em;
+}
+
+.hero-description {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 2rem;
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+.hero-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+/* Primary button styled with light gray */
+.hero-button-primary {
+  display: inline-block;
+  padding: 0.75rem 1.75rem;
+  background-color: #f3f4f6; /* Light gray */
+  color: #1e3a8a; /* Dark blue */
+  font-weight: 600;
+  border-radius: 9999px;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.hero-button-primary:hover {
+  background-color: #ffffff;
+}
+
+/* Secondary button styled as translucent */
+.hero-button-secondary {
+  display: inline-block;
+  padding: 0.75rem 1.75rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.2s;
+  backdrop-filter: blur(4px);
+}
+
+.hero-button-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.hero-image-column {
+  width: 100%;
+  margin-top: 2rem;
+}
+
+/* In your hero.css, update the hero-image-container class */
+.hero-image-container {
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  z-index: 1; /* Lower z-index than the dropdown */
+}
+
+.hero-image {
+  border-radius: 0.75rem;
+  width: 75%;
+  margin: 0 auto;
+  display: block;
+}
+
+/* Badge styling with gray */
+.hero-badge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  color: white;
+  font-size: 0.875rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(4px);
+}
+
+/* Media queries for responsive design */
+@media (min-width: 768px) {
   .hero-content-wrapper {
-    display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
+    text-align: left;
   }
   
   .hero-text-column {
-    margin-bottom: 2rem;
-  }
-  
-  .hero-title {
-    font-size: 2.25rem;
-    font-weight: 700;
-    color: white;
-    line-height: 1.2;
-    margin-bottom: 1rem;
-  }
-  
-  .hero-description {
-    font-size: 1.25rem;
-    color: white;
-    opacity: 0.9;
-    margin-bottom: 1.5rem;
-  }
-  
-  .hero-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-  
-  .hero-button-primary {
-    display: inline-block;
-    padding: 0.75rem 1.5rem;
-    background-color: white;
-    color: #3b82f6;
-    font-weight: 500;
-    border-radius: 9999px;
-    text-align: center;
-    text-decoration: none;
-    transition: background-color 0.2s;
-  }
-  
-  .hero-button-primary:hover {
-    background-color: #eff6ff;
-  }
-  
-  .hero-button-secondary {
-    display: inline-block;
-    padding: 0.75rem 1.5rem;
-    background-color: transparent;
-    color: white;
-    font-weight: 500;
-    border: 2px solid white;
-    border-radius: 9999px;
-    text-align: center;
-    text-decoration: none;
-    transition: background-color 0.2s;
-  }
-  
-  .hero-button-secondary:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    width: 50%;
+    margin-bottom: 0;
+    text-align: left;
   }
   
   .hero-image-column {
-    width: 100%;
-  }
-  
-  .hero-image-container {
-    background-color: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(4px);
-    border-radius: 0.5rem;
-    padding: 1.25rem;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  }
-  
-  .hero-image {
-    border-radius: 0.5rem;
     width: 50%;
-    margin: 0 auto;
-    display: block;
+    margin-top: 0;
   }
   
-  /* Media queries for responsive design */
-  @media (min-width: 768px) {
-    .hero-content-wrapper {
-      flex-direction: row;
-      align-items: center;
-    }
-    
-    .hero-text-column {
-      width: 50%;
-      margin-bottom: 0;
-    }
-    
-    .hero-image-column {
-      width: 50%;
-    }
-    
-    .hero-title {
-      font-size: 3rem;
-    }
-    
-    .hero-buttons {
-      flex-direction: row;
-      gap: 1rem;
-    }
+  .hero-title {
+    font-size: 3.5rem;
   }
+  
+  .hero-buttons {
+    flex-direction: row;
+    gap: 1rem;
+    justify-content: flex-start;
+  }
+  
+  .hero-description {
+    margin-left: 0;
+  }
+}

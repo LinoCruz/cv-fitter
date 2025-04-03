@@ -12,16 +12,16 @@
   },
   "hero": {
     "title": "Mejora Tu CV Para Mejores Oportunidades Laborales",
-    "description": "Sube tu CV y la descripción del trabajo para obtener mejoras personalizadas que se ajusten a los requisitos.",
-    "enhanceButton": "Mejora Tu CV",
+    "description": "Sube tu CV y la descripción del trabajo para obtener mejoras personalizadas que coincidan con los requisitos.",
+    "enhanceButton": "Mejorar Tu CV",
     "browseButton": "Explorar Cursos"
   },
   "cvEnhancer": {
     "title": "Mejora Tu CV",
-    "uploadLabel": "Sube tu CV (PDF)",
+    "uploadLabel": "Subir tu CV (PDF)",
     "uploadText": "Haz clic para subir o arrastra y suelta tu archivo CV",
     "jobDescriptionLabel": "Descripción del Trabajo",
-    "jobDescriptionPlaceholder": "Introduce aquí la descripción del trabajo...",
+    "jobDescriptionPlaceholder": "Ingresa la descripción del trabajo aquí...",
     "buttonText": "Mejorar CV"
   },
   "features": {
@@ -29,7 +29,7 @@
     "subtitle": "Proporcionamos herramientas para ayudarte a destacar en el mercado laboral",
     "feature1": {
       "title": "Mejora de CV",
-      "description": "Optimiza tu CV para descripciones específicas de trabajo utilizando nuestras herramientas con IA."
+      "description": "Optimiza tu CV para descripciones de trabajo específicas utilizando nuestras herramientas impulsadas por IA."
     },
     "feature2": {
       "title": "Cursos de Habilidades",
@@ -38,6 +38,49 @@
     "feature3": {
       "title": "Recomendaciones",
       "description": "Obtén recomendaciones personalizadas para mejorar tus perspectivas de empleo."
+    }
+  },
+  "courses": {
+    "pageTitle": "Explorar Cursos",
+    "pageSubtitle": "Mejora tus habilidades con nuestra selección de cursos profesionales",
+    "bannerTitle": "Acelera Tu Carrera",
+    "bannerSubtitle": "Descubre cursos dirigidos por expertos diseñados para ayudarte a dominar nuevas habilidades y avanzar en tu carrera",
+    "search": "Buscar cursos...",
+    "noCoursesFound": "No se encontraron cursos que coincidan con tus criterios",
+    "courseFound": "curso encontrado",
+    "coursesFound": "cursos encontrados",
+    "loadingMore": "Cargando más cursos...",
+    "viewDetails": "Ver Detalles",
+    "filters": {
+      "allCourses": "Todos los Cursos",
+      "allPrices": "Todos los Precios",
+      "freeCourses": "Cursos Gratuitos",
+      "underFifty": "Menos de $50",
+      "fiftyToHundred": "$50 - $100",
+      "hundredToOneFifty": "$100 - $150",
+      "overOneFifty": "Más de $150"
+    },
+    "courseDetails": {
+      "free": "Gratis",
+      "level": "Nivel",
+      "duration": "Duración",
+      "published": "Publicado",
+      "description": "Descripción",
+      "highlights": "Lo que Aprenderás",
+      "curriculum": "Plan de Estudios",
+      "enrollNow": "Inscribirse Ahora"
+    },
+    "categories": {
+      "tech": "Tecnología",
+      "marketing": "Marketing",
+      "socialMedia": "Redes Sociales",
+      "it": "TI y Cloud",
+      "design": "Diseño"
+    },
+    "levels": {
+      "beginner": "Principiante",
+      "intermediate": "Intermedio",
+      "advanced": "Avanzado"
     }
   }
 }

@@ -1,0 +1,72 @@
+/* unified-gradient.css */
+/* Blue and dark blue gradient */
+
+.gradient-background {
+    background: linear-gradient(to right, #1e3a8a, #2563eb); /* Dark blue to blue gradient */
+    width: 100%;
+    position: relative;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Add a subtle radial gradient overlay for depth */
+  .gradient-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 70% 30%, rgba(96, 165, 250, 0.15), transparent 70%);
+    pointer-events: none;
+  }
+  
+  /* In unified-gradient.css */
+.header {
+    padding: 1rem 0;
+    background: transparent;
+    position: relative;
+    z-index: 100; /* Higher than base elements but lower than dropdown */
+    width: 100%;
+  }
+  
+  /* Hero section also transparent */
+  .hero {
+    position: relative;
+    padding: 4rem 0;
+    background: transparent;
+    z-index: 10; /* Lower than header and much lower than dropdown */
+    width: 100%;
+  }
+  
+  /* Adjust text colors for better visibility on dark background */
+  .hero-title, 
+  .hero-description {
+    color: #ffffff;
+  }
+  
+  .hero-description {
+    color: rgba(255, 255, 255, 0.85);
+  }
+  
+  /* Adjust button styles for blue theme */
+  .hero-button-primary {
+    background-color: #f3f4f6; /* Light gray */
+    color: #1e3a8a; /* Dark blue text */
+  }
+  
+  .hero-button-primary:hover {
+    background-color: #ffffff;
+  }
+  
+  /* Add a subtle texture overlay for more depth (optional) */
+  .gradient-background::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23ffffff' fill-opacity='0.02' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+    pointer-events: none;
+  }

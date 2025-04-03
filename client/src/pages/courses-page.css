@@ -1,0 +1,50 @@
+/* src/pages/courses-page.css */
+
+.courses-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .header-container-wrapper {
+    background: linear-gradient(135deg, #2563eb, #1e40af, #1e3a8a);
+    width: 100%;
+  }
+  
+  .courses-page-main {
+    flex: 1;
+  }
+  
+  .courses-banner {
+    background: linear-gradient(135deg, #2563eb, #1e40af, #1e3a8a);
+    color: white;
+    padding: 80px 20px;
+    text-align: center;
+  }
+  
+  .banner-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .banner-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+  }
+  
+  .banner-subtitle {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    opacity: 0.9;
+  }
+  
+  @media (min-width: 768px) {
+    .courses-banner {
+      padding: 100px 20px;
+    }
+    
+    .banner-title {
+      font-size: 3rem;
+    }
+  }

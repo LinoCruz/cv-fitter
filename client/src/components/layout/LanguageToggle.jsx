@@ -23,8 +23,16 @@ function LanguageToggle({ currentLanguage, onLanguageChange }) {
     setIsOpen(!isOpen);
   };
   
-  const selectLanguage = (language) => {
-    onLanguageChange(language);
+  // Explicitly separate the handlers for each language
+  const handleEnglishClick = (e) => {
+    e.stopPropagation(); // Prevent event bubbling
+    onLanguageChange('en');
+    setIsOpen(false);
+  };
+  
+  const handleSpanishClick = (e) => {
+    e.stopPropagation(); // Prevent event bubbling
+    onLanguageChange('es');
     setIsOpen(false);
   };
   
@@ -35,6 +43,7 @@ function LanguageToggle({ currentLanguage, onLanguageChange }) {
         onClick={toggleDropdown}
         aria-haspopup="true"
         aria-expanded={isOpen}
+        type="button"
       >
         <svg className="language-toggle-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
@@ -53,22 +62,26 @@ function LanguageToggle({ currentLanguage, onLanguageChange }) {
         </svg>
       </button>
       
-      <div className={`language-toggle-dropdown ${isOpen ? 'open' : ''}`}>
-        <div 
-          className={`language-toggle-option ${currentLanguage === 'en' ? 'active' : ''}`}
-          onClick={() => selectLanguage('en')}
-        >
-          <span className="language-toggle-flag">🇺🇸</span>
-          <span className="language-toggle-label">English</span>
+      {isOpen && (
+        <div className="language-toggle-dropdown open">
+          <button 
+            className={`language-toggle-option ${currentLanguage === 'en' ? 'active' : ''}`}
+            onClick={handleEnglishClick}
+            type="button"
+          >
+            <span className="language-toggle-flag">🇺🇸</span>
+            <span className="language-toggle-label">English</span>
+          </button>
+          <button 
+            className={`language-toggle-option ${currentLanguage === 'es' ? 'active' : ''}`}
+            onClick={handleSpanishClick}
+            type="button"
+          >
+            <span className="language-toggle-flag">🇪🇸</span>
+            <span className="language-toggle-label">Español</span>
+          </button>
         </div>
-        <div 
-          className={`language-toggle-option ${currentLanguage === 'es' ? 'active' : ''}`}
-          onClick={() => selectLanguage('es')}
-        >
-          <span className="language-toggle-flag">🇪🇸</span>
-          <span className="language-toggle-label">Español</span>
-        </div>
-      </div>
+      )}
     </div>
   );
 }

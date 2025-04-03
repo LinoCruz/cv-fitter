@@ -1,12 +1,18 @@
 import React from 'react';
-import { Hero, CVEnhancer, Features } from '../components/home';
+import HeaderHeroWrapper from '../components/layout/HeaderHeroWrapper';
+import CVEnhancer from '../components/home/CVEnhancer';
+import Features from '../components/home/Features';
+import Footer from '../components/layout/Footer';
 
 function HomePage() {
   return (
     <>
-      <Hero />
-      <CVEnhancer />
-      <Features />
+      <HeaderHeroWrapper />
+      <main>
+        <CVEnhancer />
+        <Features />
+      </main>
+      <Footer />
     </>
   );
 }

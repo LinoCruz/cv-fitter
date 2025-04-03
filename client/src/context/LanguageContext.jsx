@@ -28,10 +28,13 @@ export function LanguageProvider({ children }) {
   useEffect(() => {
     localStorage.setItem('language', language);
     setT(translations[language]);
+    // You could add additional logic here like changing the HTML lang attribute
+    document.documentElement.lang = language;
   }, [language]);
 
   // Switch language function
   const changeLanguage = (newLanguage) => {
+    console.log("Changing language to:", newLanguage); // Add this for debugging
     if (translations[newLanguage]) {
       setLanguage(newLanguage);
     }

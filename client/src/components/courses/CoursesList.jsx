@@ -1,71 +1,237 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
+// src/components/courses/CoursesList.jsx
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { useLanguage } from '../../context/LanguageContext';
 import CourseCard from './CourseCard';
+import CourseModal from './CourseModal';
+import { coursesData, categories, priceRanges } from '../../data/coursesData';
+import './courses-list.css';
 
-const CoursesList = ({ courses, loading, error }) => {
-  const { t } = useTranslation();
+const CoursesList = () => {
+  const { t } = useLanguage();
+  const [courses, setCourses] = useState([]);
+  const [filteredCourses, setFilteredCourses] = useState([]);
+  const [visibleCourses, setVisibleCourses] = useState([]);
+  const [selectedCourse, setSelectedCourse] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [categoryFilter, setCategoryFilter] = useState('all');
+  const [priceFilter, setPriceFilter] = useState('all');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(1);
+  const observer = useRef();
+  const coursesPerPage = 6;
 
-  if (loading) {
-    return (
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {/* Skeleton loading cards */}
-        {[...Array(6)].map((_, index) => (
-          <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden">
-            <div className="h-48 bg-gray-200 animate-pulse"></div>
-            <div className="p-6 space-y-4">
-              <div className="h-6 bg-gray-200 rounded animate-pulse"></div>
-              <div className="h-4 bg-gray-200 rounded w-3/4 animate-pulse"></div>
-              <div className="h-4 bg-gray-200 rounded w-1/2 animate-pulse"></div>
-              <div className="pt-4">
-                <div className="h-10 bg-gray-200 rounded animate-pulse"></div>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
+  // Initialize with dummy data
+  useEffect(() => {
+    // Sort courses by published date (newest first)
+    const sortedCourses = [...coursesData].sort((a, b) => 
+      new Date(b.publishedDate) - new Date(a.publishedDate)
     );
-  }
+    
+    setCourses(sortedCourses);
+    setFilteredCourses(sortedCourses);
+    setVisibleCourses(sortedCourses.slice(0, coursesPerPage));
+  }, []);
 
-  if (error) {
-    return (
-      <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded-md">
-        <div className="flex">
-          <div className="flex-shrink-0">
-            <svg className="h-5 w-5 text-red-500" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
-            </svg>
-          </div>
-          <div className="ml-3">
-            <p className="text-sm text-red-700">
-              {error}
-            </p>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  // Apply filters when they change
+  useEffect(() => {
+    setLoading(true);
+    
+    let filtered = [...courses];
+    
+    // Apply category filter
+    if (categoryFilter !== 'all') {
+      filtered = filtered.filter(course => course.category === categoryFilter);
+    }
+    
+    // Apply price filter
+    if (priceFilter !== 'all') {
+      const range = priceRanges.find(range => range.id === priceFilter);
+      if (range) {
+        filtered = filtered.filter(course => 
+          course.price >= range.min && course.price <= range.max
+        );
+      }
+    }
+    
+    // Apply search query
+    if (searchQuery.trim() !== '') {
+      const query = searchQuery.toLowerCase();
+      filtered = filtered.filter(course => 
+        course.title.toLowerCase().includes(query) || 
+        course.description.toLowerCase().includes(query) ||
+        course.institution.toLowerCase().includes(query)
+      );
+    }
+    
+    setFilteredCourses(filtered);
+    setPage(1);
+    setVisibleCourses(filtered.slice(0, coursesPerPage));
+    setLoading(false);
+  }, [categoryFilter, priceFilter, searchQuery, courses]);
 
-  if (!courses || courses.length === 0) {
-    return (
-      <div className="text-center py-12 bg-white rounded-lg shadow-md">
-        <svg className="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-        </svg>
-        <h3 className="mt-2 text-lg font-medium text-gray-900">
-          {t('courses.noCourses')}
-        </h3>
-        <p className="mt-1 text-sm text-gray-500">
-          {t('courses.tryAdjustingFilters')}
-        </p>
-      </div>
-    );
-  }
+  // Load more courses when user scrolls to the bottom
+  const loadMoreCourses = useCallback(() => {
+    if (loading) return;
+    
+    const nextPage = page + 1;
+    const nextCourses = filteredCourses.slice(0, nextPage * coursesPerPage);
+    
+    setVisibleCourses(nextCourses);
+    setPage(nextPage);
+  }, [loading, page, filteredCourses, coursesPerPage]);
+
+  // Set up intersection observer for infinite scroll
+  const lastCourseElementRef = useCallback(node => {
+    if (loading) return;
+    if (observer.current) observer.current.disconnect();
+    
+    observer.current = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && visibleCourses.length < filteredCourses.length) {
+        loadMoreCourses();
+      }
+    });
+    
+    if (node) observer.current.observe(node);
+  }, [loading, loadMoreCourses, visibleCourses.length, filteredCourses.length]);
+
+  // Handle view details click
+  const handleViewDetails = (course) => {
+    setSelectedCourse(course);
+    setShowModal(true);
+  };
+
+  // Close modal
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setSelectedCourse(null);
+  };
+
+  // Get translated category name
+  const getCategoryName = (categoryId) => {
+    const category = categories.find(cat => cat.id === categoryId);
+    if (!category) return '';
+    
+    const categoryMap = {
+      'all': t.courses.filters.allCourses,
+      'tech': t.courses.categories.tech,
+      'marketing': t.courses.categories.marketing,
+      'social media': t.courses.categories.socialMedia,
+      'it': t.courses.categories.it,
+      'design': t.courses.categories.design
+    };
+    
+    return categoryMap[category.id] || category.name;
+  };
+
+  // Get translated price range name
+  const getPriceRangeName = (rangeId) => {
+    const range = priceRanges.find(r => r.id === rangeId);
+    if (!range) return '';
+    
+    const priceMap = {
+      'all': t.courses.filters.allPrices,
+      'free': t.courses.filters.freeCourses,
+      'under-50': t.courses.filters.underFifty,
+      '50-100': t.courses.filters.fiftyToHundred,
+      '100-150': t.courses.filters.hundredToOneFifty,
+      'over-150': t.courses.filters.overOneFifty
+    };
+    
+    return priceMap[range.id] || range.name;
+  };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {courses.map((course) => (
-        <CourseCard key={course.id} course={course} />
-      ))}
+    <div className="courses-container">
+      <div className="courses-header">
+        <h2 className="courses-title">{t.courses.pageTitle}</h2>
+        <p className="courses-subtitle">{t.courses.pageSubtitle}</p>
+      </div>
+      
+      <div className="courses-filters">
+        <div className="search-container">
+          <input
+            type="text"
+            placeholder={t.courses.search}
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="search-input"
+          />
+        </div>
+        
+        <div className="filter-container">
+          <select 
+            value={categoryFilter}
+            onChange={(e) => setCategoryFilter(e.target.value)}
+            className="filter-select"
+          >
+            {categories.map(category => (
+              <option key={category.id} value={category.id}>
+                {getCategoryName(category.id)}
+              </option>
+            ))}
+          </select>
+          
+          <select 
+            value={priceFilter}
+            onChange={(e) => setPriceFilter(e.target.value)}
+            className="filter-select"
+          >
+            {priceRanges.map(range => (
+              <option key={range.id} value={range.id}>
+                {getPriceRangeName(range.id)}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
+      
+      {filteredCourses.length === 0 ? (
+        <div className="no-courses">
+          <p>{t.courses.noCoursesFound}</p>
+        </div>
+      ) : (
+        <>
+          <div className="courses-results">
+            <p className="results-count">
+              {filteredCourses.length} {filteredCourses.length === 1 ? t.courses.courseFound : t.courses.coursesFound}
+            </p>
+          </div>
+          
+          <div className="courses-grid">
+            {visibleCourses.map((course, index) => {
+              // Add ref to last element for infinite scrolling
+              if (index === visibleCourses.length - 1) {
+                return (
+                  <div ref={lastCourseElementRef} key={course.id} className="course-grid-item">
+                    <CourseCard course={course} onViewDetails={handleViewDetails} />
+                  </div>
+                );
+              } else {
+                return (
+                  <div key={course.id} className="course-grid-item">
+                    <CourseCard course={course} onViewDetails={handleViewDetails} />
+                  </div>
+                );
+              }
+            })}
+          </div>
+          
+          {loading && (
+            <div className="loading-indicator">
+              <div className="loading-spinner"></div>
+              <p>{t.courses.loadingMore}</p>
+            </div>
+          )}
+        </>
+      )}
+      
+      {showModal && selectedCourse && (
+        <CourseModal 
+          course={selectedCourse} 
+          onClose={handleCloseModal} 
+        />
+      )}
     </div>
   );
 };
