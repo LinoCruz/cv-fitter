@@ -101,7 +101,7 @@ def upload_cv():
         }
         return jsonify(response), 200
 
-    except Exception as e:
+    except Exception as e: 
         return jsonify({'error': str(e)}), 500
 
 @app.route('/improve-cv', methods=['POST'])
