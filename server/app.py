@@ -1,133 +1,27 @@
-import os
-from flask import Flask, request, jsonify
-from flask_cors import CORS
-import fitz
-import tiktoken
+from flask import Flask
 from dotenv import load_dotenv
-from openai import OpenAI
+import os
+from api.routes import register_routes
 
-# Load environment variables from .env file
+# Load environment variables
 load_dotenv()
-client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 
-app = Flask(__name__)
-CORS(app)  # Enable CORS for development
-
-def extract_text_from_pdf(file_stream):
-    """
-    Extracts text from a PDF file stream using PyMuPDF (fitz).
-    The file is read as bytes, then opened with fitz.open using the stream.
-    """
-    file_bytes = file_stream.read()
-    # Open the PDF from the bytes stream. The "filetype" is specified as "pdf".
-    doc = fitz.open(stream=file_bytes, filetype="pdf")
-    text = ""
-    for page in doc:
-        text += page.get_text() + "\n"
-    return text
-
-def tokenize_text(text):
-    """
-    Tokenizes text using tiktoken with the 'o200k_base' encoding.
-    """
-    enc = tiktoken.get_encoding("o200k_base")
-    tokens = enc.encode(text)
-    return tokens
-
-def improve_cv(cv_text, job_description):
-    """
-    Improves the CV by sending a prompt to OpenAI's API using the 'gpt-4o-mini' model.
-    The prompt now instructs the model to output valid HTML formatted according to Harvard guidelines.
-    """
-    prompt = (
-        "Improve the following CV to better match the job description provided. "
-        "Do not have introduction or conclusion paragraphs."
-        "Return only valid HTML code with no markdown formatting. The HTML must be a complete "
-        "document including <html>, <head>, and <body> tags, and follow Harvard style guidelines for academic CVs.\n\n"
-        "The document should have black text on a white background, with a font size of 12pt and a font style of Times New Roman.\n\n"
-        "The headings and subheadings can have a font size of 14pt and should be bolded.\n\n"
-        "The description of each section in the CV should be concise and relevant to the job description. "
-        "Only rephrase the content of the CV, do not add any information.\n\n"
-        "The section description should be rephrased to include keywords from the job description. "
-        "If the job description requires a Junior position, the CV should include the Technical Skills section"
-        "If the job description requires a Semisenior, Senior or Semi-senior position, the CV should not include a Technical Skills section"
-        "If the job description does not indicate the level of the position, the CV should include the Technical Skills section"
-        "If the technical skills section is included, the skills should be relevant to the job description and listed in bullet points.\n\n"
-        "The technical skills should use skills described in other parts of the CV. For example, if a section of a professional experience mentions 'Python', the technical skills should include 'Python'.\n\n"
-        "Do not modify the basic information from the user like university, title, or personal information."
-        "Only modify the sections by rephrasing them to better match the job description."
-        "Do not create positions or experiences that are not in the CV.\n\n"
-        "Do not use placeholders like 'Lorem Ipsum', 'Job Title', 'XYZ', 'Year'  in the CV. Always use the information available in the CV.\n\n"
-        "If the CV does not have a references section do not add it."
-
-        f"CV:\n{cv_text}\n\n"
-        f"Job Description:\n{job_description}\n\n"
-    )
+def create_app():
+    """Create and configure the Flask application"""
+    app = Flask(__name__)
     
-    response = client.chat.completions.create(
-        model="gpt-4o-mini",
-        messages=[
-            {"role": "system", "content": "You are a helpful assistant specialized in improving CVs."},
-            {"role": "user", "content": prompt}
-        ],
-        temperature=0.7,
-        max_tokens=1500  # Adjust as needed
-    )
+    # Configure app
+    app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # Limit upload size to 16MB
+    app.config['UPLOAD_FOLDER'] = os.path.join(os.getcwd(), 'temp')
     
-    improved_cv = response.choices[0].message.content
-    return improved_cv
+    # Ensure temp directory exists
+    os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
+    
+    # Register API routes
+    register_routes(app)
+    
+    return app
 
-@app.route('/upload-cv', methods=['POST'])
-def upload_cv():
-    cv_file = request.files.get('cv_file')
-    if not cv_file:
-        return jsonify({'error': 'No CV file uploaded'}), 400
-
-    try:
-        # Extract text from the PDF using PyMuPDF
-        text = extract_text_from_pdf(cv_file)
-        print(text)
-        if not text.strip():
-            return jsonify({'error': 'Could not extract text from the PDF.'}), 400
-
-        # Tokenize the extracted text using tiktoken
-        tokens = tokenize_text(text)
-
-        response = {
-            'message': 'PDF loaded and tokenized successfully.',
-            'extracted_text_preview': text[:200],  # Preview first 200 characters
-            'token_count': len(tokens),
-            'tokens_preview': tokens[:50]  # Preview first 50 tokens
-        }
-        return jsonify(response), 200
-
-    except Exception as e: 
-        return jsonify({'error': str(e)}), 500
-
-@app.route('/improve-cv', methods=['POST'])
-def improve_cv_endpoint():
-    """
-    Expects a JSON payload with 'cv_text' and 'job_description' keys.
-    Calls the improve_cv function to generate an improved version of the CV.
-    """
-    data = request.get_json()
-    if not data:
-        return jsonify({'error': 'No data provided.'}), 400
-
-    cv_text = data.get('cv_text')
-    job_description = data.get('job_description')
-    if not cv_text or not job_description:
-        return jsonify({'error': 'Both cv_text and job_description are required.'}), 400
-
-    try:
-        improved_cv = improve_cv(cv_text, job_description)
-        return jsonify({
-            'message': 'CV improved successfully.',
-            'improved_cv': improved_cv
-        }), 200
-
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
-
-if __name__ == '__main__':
+if __name__ == "__main__":
+    app = create_app()
     app.run(debug=True)
