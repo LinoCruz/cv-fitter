@@ -83,7 +83,7 @@ def enhance_cv_with_gpt(cv_text, job_description, language):
         try:
             # Make the API call to GPT using the updated client
             response = client.chat.completions.create(
-                model="gpt-4", # You can adjust the model as needed
+                model="gpt-4.1-mini", # Use a valid available GPT-4 model
                 messages=[
                     {"role": "system", "content": system_prompt},
                     {"role": "user", "content": user_message}

@@ -50,7 +50,7 @@ class TestGPTService(unittest.TestCase):
         # Verify the API was called with the expected parameters
         mock_openai_create.assert_called_once()
         args, kwargs = mock_openai_create.call_args
-        self.assertEqual(kwargs['model'], 'gpt-4')
+        self.assertEqual(kwargs['model'], 'gpt-4.1-mini')
         self.assertEqual(len(kwargs['messages']), 2)
         self.assertEqual(kwargs['messages'][0]['role'], 'system')
         self.assertEqual(kwargs['messages'][1]['role'], 'user')

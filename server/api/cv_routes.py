@@ -3,7 +3,6 @@ import os
 import uuid
 from werkzeug.utils import secure_filename
 from services.pdf_service import extract_text_from_pdf
-from services.gpt_service import enhance_cv_with_gpt
 from services.formatter_service import format_to_harvard
 from services.language_service import get_language_context
 from utils.validators import validate_file_extension, validate_job_description
@@ -13,6 +12,7 @@ def register_cv_routes(app):
     
     @app.route('/api/enhance-cv', methods=['POST'])
     def enhance_cv():
+        from services.gpt_service import enhance_cv_with_gpt
         # Check if 'file' part exists in the request
         if 'file' not in request.files:
             return jsonify({'error': 'No file part in the request'}), 400

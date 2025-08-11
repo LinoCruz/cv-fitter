@@ -1,6 +1,7 @@
 # Python
 server/my-cv-env/
 server/.env
+server/.venv
 *.pyc
 __pycache__/
 

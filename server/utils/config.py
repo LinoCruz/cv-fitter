@@ -12,7 +12,7 @@ class Config:
     
     # API settings
     OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
-    GPT_MODEL = os.getenv('GPT_MODEL', 'gpt-4')
+    GPT_MODEL = os.getenv('GPT_MODEL', 'gpt-4.1-mini')
     
     # File upload settings
     MAX_CONTENT_LENGTH = 16 * 1024 * 1024  # 16MB max upload size
