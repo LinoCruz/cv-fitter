@@ -5,11 +5,57 @@ import './cvenhancer.css';
 function CVEnhancer() {
   const { t } = useLanguage();
   const [file, setFile] = useState(null);
-  
+  const [jobDescription, setJobDescription] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [result, setResult] = useState(null);
+
   // Handle file input change
   const handleFileChange = (e) => {
     if (e.target.files && e.target.files[0]) {
       setFile(e.target.files[0]);
+    }
+  };
+
+  // Handle job description change
+  const handleJobDescriptionChange = (e) => {
+    setJobDescription(e.target.value);
+  };
+
+  // Handle Enhance CV button click
+  const handleEnhanceCV = async () => {
+    setError("");
+    setResult(null);
+    if (!file) {
+      setError("Please upload your CV file.");
+      return;
+    }
+    if (!jobDescription.trim()) {
+      setError("Please enter the job description.");
+      return;
+    }
+    setLoading(true);
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("job_description", jobDescription);
+      // You can add language if needed
+      // formData.append("language", "en");
+
+      const response = await fetch("/api/enhance-cv", {
+        method: "POST",
+        body: formData,
+      });
+      if (!response.ok) {
+        const err = await response.json();
+        throw new Error(err.error || "Failed to enhance CV");
+      }
+      const data = await response.json();
+      setResult(data);
+    } catch (err) {
+      setError(err.message || "An error occurred");
+    } finally {
+      setLoading(false);
     }
   };
   
@@ -54,6 +100,8 @@ function CVEnhancer() {
               rows="6"
               className="cv-enhancer-textarea"
               placeholder={t.cvEnhancer.jobDescriptionPlaceholder}
+              value={jobDescription}
+              onChange={handleJobDescriptionChange}
             ></textarea>
           </div>
           
@@ -61,9 +109,18 @@ function CVEnhancer() {
             <button
               type="button"
               className="cv-enhancer-button"
+              onClick={handleEnhanceCV}
+              disabled={loading}
             >
-              {t.cvEnhancer.buttonText}
+              {loading ? "Enhancing..." : t.cvEnhancer.buttonText}
             </button>
+            {error && <div style={{ color: 'red', marginTop: 8 }}>{error}</div>}
+            {result && (
+              <div style={{ marginTop: 16 }}>
+                <h3>Enhanced CV Results</h3>
+                <pre style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>{JSON.stringify(result, null, 2)}</pre>
+              </div>
+            )}
           </div>
         </div>
       </div>
