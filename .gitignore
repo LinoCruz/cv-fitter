@@ -2,6 +2,7 @@
 server/my-cv-env/
 server/.env
 server/.venv
+server/myenv
 *.pyc
 __pycache__/
 
