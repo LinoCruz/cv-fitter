@@ -12,16 +12,15 @@
   },
   "hero": {
     "title": "Mejora Tu CV Para Mejores Oportunidades Laborales",
-    "description": "Sube tu CV y la descripción del trabajo para obtener mejoras personalizadas que coincidan con los requisitos.",
-    "enhanceButton": "Mejorar Tu CV",
-    "browseButton": "Explorar Cursos"
+    "description": "Sube tu CV y la descripción de la posición para obtener mejoras personalizadas que coincidan con los requisitos.",
+    "enhanceButton": "Mejorar Tu CV"
   },
   "cvEnhancer": {
     "title": "Mejora Tu CV",
     "uploadLabel": "Subir tu CV (PDF)",
     "uploadText": "Haz clic para subir o arrastra y suelta tu archivo CV",
-    "jobDescriptionLabel": "Descripción del Trabajo",
-    "jobDescriptionPlaceholder": "Ingresa la descripción del trabajo aquí...",
+    "jobDescriptionLabel": "Descripción del Puesto",
+    "jobDescriptionPlaceholder": "Ingresa la descripción del puesto aquí...",
     "buttonText": "Mejorar CV"
   },
   "features": {

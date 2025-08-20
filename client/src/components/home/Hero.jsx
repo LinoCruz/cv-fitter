@@ -24,9 +24,6 @@ function Hero() {
               <a href="#cv-enhancer" className="hero-button-primary">
                 {t.hero.enhanceButton}
               </a>
-              <a href="/courses" className="hero-button-secondary">
-                {t.hero.browseButton}
-              </a>
             </div>
           </div>
           
