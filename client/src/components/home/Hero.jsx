@@ -11,14 +11,12 @@ function Hero() {
       <div className="hero-container">
         <div className="hero-content-wrapper">
           <div className="hero-text-column">
-            {/* Badge similar to "Grow on Your Own Terms" */}
-            <div className="hero-badge">CV Optimization</div>
             
             <h1 className="hero-title">
               {t.hero.title}
             </h1>
             <p className="hero-description">
-              {t.hero.description}
+              {t.hero.description2}
             </p>
             <div className="hero-buttons">
               <a href="#cv-enhancer" className="hero-button-primary">

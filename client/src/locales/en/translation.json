@@ -12,12 +12,18 @@
   },
   "hero": {
     "title": "Enhance Your CV For Better Job Opportunities",
-    "description": "Upload your CV and job description to get tailored improvements that match the requirements.",
-    "enhanceButton": "Enhance Your CV",
-    "browseButton": "Browse Courses"
+  "description2": "We analyze your CV, enhance it to match the job requirements, and transform it into the Harvard style, the most recommended format to pass company ATS screenings.",
+    "enhanceButton": "Enhance Your CV"
   },
   "cvEnhancer": {
     "title": "Enhance Your CV",
+    "aiModelLabel": "AI Model",
+  "aiModelTooltip": "Selecting a model may produce different responses, but all are designed to help you get a CV that passes ATS systems.",
+  "aiModelOptions": {
+      "o3": "GPT-o3 (most capable)",
+      "4o": "GPT-4o (balanced)",
+      "gpt5": "GPT-5 (newest model)"
+    },
     "uploadLabel": "Upload your CV (PDF)",
     "uploadText": "Click to upload or drag and drop your CV file",
     "jobDescriptionLabel": "Job Description",

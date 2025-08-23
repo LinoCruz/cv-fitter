@@ -3,12 +3,19 @@ import { useLanguage } from '../../context/LanguageContext';
 import './cvenhancer.css';
 
 function CVEnhancer() {
+  const [showTooltip, setShowTooltip] = useState(false);
   const { t } = useLanguage();
   const [file, setFile] = useState(null);
   const [jobDescription, setJobDescription] = useState("");
+  const [model, setModel] = useState("o3");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [result, setResult] = useState(null);
+  const modelOptions = [
+    { value: "o3", label: t.cvEnhancer.aiModelOptions.o3 },
+    { value: "4o", label: t.cvEnhancer.aiModelOptions["4o"] },
+    { value: "gpt-5", label: t.cvEnhancer.aiModelOptions.gpt5 }
+  ];
 
   // Handle file input change
   const handleFileChange = (e) => {
@@ -20,6 +27,11 @@ function CVEnhancer() {
   // Handle job description change
   const handleJobDescriptionChange = (e) => {
     setJobDescription(e.target.value);
+  };
+
+  // Handle model change
+  const handleModelChange = (e) => {
+    setModel(e.target.value);
   };
 
   // Handle Enhance CV button click
@@ -37,8 +49,9 @@ function CVEnhancer() {
     setLoading(true);
     try {
       const formData = new FormData();
-      formData.append("file", file);
-      formData.append("job_description", jobDescription);
+  formData.append("file", file);
+  formData.append("job_description", jobDescription);
+  formData.append("model", model);
       // You can add language if needed
       // formData.append("language", "en");
 
@@ -89,6 +102,55 @@ function CVEnhancer() {
                 />
               </label>
             </div>
+          </div>
+
+          <div className="cv-enhancer-form-group">
+            <label htmlFor="ai-model" className="cv-enhancer-label" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              {t.cvEnhancer.aiModelLabel}
+              <span
+                style={{ position: 'relative', cursor: 'pointer' }}
+                onMouseEnter={() => setShowTooltip(true)}
+                onMouseLeave={() => setShowTooltip(false)}
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ verticalAlign: 'middle' }}>
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="12" y1="16" x2="12" y2="12" />
+                  <line x1="12" y1="8" x2="12" y2="8" />
+                </svg>
+                {showTooltip && (
+                  <span style={{
+                    background: 'rgba(128,128,128,0.85)',
+                    color: '#fff',
+                    textAlign: 'left',
+                    borderRadius: '4px',
+                    padding: '8px',
+                    position: 'absolute',
+                    zIndex: 10,
+                    left: '20px',
+                    top: '-10px',
+                    width: '220px',
+                    fontSize: '0.75rem',
+                    boxShadow: 'none',
+                    border: '1px solid #ccc'
+                  }}>
+                    {t.cvEnhancer.aiModelTooltip}
+                  </span>
+                )}
+              </span>
+            </label>
+            <select
+              id="ai-model"
+              className="cv-enhancer-select"
+              value={model}
+              onChange={handleModelChange}
+              style={{ marginTop: '0.5rem' }}
+            >
+              {modelOptions.map(opt => (
+                <option key={opt.value} value={opt.value}>
+                  {opt.label}
+                </option>
+              ))}
+            </select>
           </div>
           
           <div className="cv-enhancer-form-group">
