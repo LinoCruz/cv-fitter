@@ -5,10 +5,13 @@
     "login": "Iniciar Sesión"
   },
   "footer": {
-    "about": "Acerca de",
+    "about": "Acerca del Proyecto",
+    "description": "Aprende más sobre las especificaciones técnicas del proyecto:",
     "privacy": "Política de Privacidad",
     "terms": "Términos de Servicio",
-    "rights": "Todos los derechos reservados."
+    "rights": "Todos los derechos reservados.",
+    "aboutModal": "CV Fitter es un proyecto de código abierto diseñado para ayudar a los buscadores de empleo a optimizar sus CVs para los procesos de reclutamiento modernos. La plataforma utiliza modelos avanzados de IA para analizar, mejorar y reformatear los CVs con el fin de aumentar las posibilidades de pasar los sistemas automatizados de selección (ATS).\n\nNuestro objetivo es hacer que la mejora profesional del CV sea accesible para todos, independientemente de su experiencia técnica. No almacenamos ni compartimos tus datos personales. Todo el procesamiento se realiza de manera segura y solo durante la duración de tu sesión.\n\nEl proyecto está construido utilizando React para el frontend y Python (Flask) para el backend, con integración a modelos de OpenAI para la mejora del CV. Puedes encontrar el código fuente y contribuir en GitHub.",
+    "privacyModal": "CV Fitter no almacena, comparte ni vende ninguno de tus datos personales. Todos los archivos y la información del CV que subas se procesan solo en memoria y nunca se guardan en nuestros servidores.\n\nSin embargo, el proceso de mejora está impulsado por modelos de OpenAI, lo que significa que los datos de tu CV se envían a la API de OpenAI para su análisis y mejora. Si bien OpenAI tiene políticas estrictas de privacidad y seguridad, recomendamos revisar su política de privacidad para obtener más detalles: https://openai.com/policies/privacy-policy.\n\nAl utilizar CV Fitter, reconoces que los datos de tu CV serán procesados por los modelos de OpenAI únicamente con el propósito de proporcionarte un CV mejorado."
   },
   "hero": {
     "title": "Mejora Tu CV Para Mejores Oportunidades Laborales",

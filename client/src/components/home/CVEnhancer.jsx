@@ -74,12 +74,12 @@ function CVEnhancer() {
   
   return (
     <section id="cv-enhancer" className="cv-enhancer">
-      <div className="cv-enhancer-container">
+      <div className="cv-enhancer-main-layout">
         <div className="cv-enhancer-card">
           <h2 className="cv-enhancer-title">
             {t.cvEnhancer.title}
           </h2>
-          
+          {/* ...existing form code... */}
           <div className="cv-enhancer-form-group">
             <label className="cv-enhancer-label">
               {t.cvEnhancer.uploadLabel}
@@ -93,6 +93,9 @@ function CVEnhancer() {
                   <p className="cv-enhancer-upload-text">
                     {file ? file.name : t.cvEnhancer.uploadText}
                   </p>
+                  <span className="cv-enhancer-upload-message" style={{fontSize: '0.9rem', color: '#2563eb', display: 'block'}}>
+                    (Only PDF and .Doc files are accepted)
+                  </span>
                 </div>
                 <input 
                   type="file" 
@@ -102,6 +105,7 @@ function CVEnhancer() {
                 />
               </label>
             </div>
+            {/* Message moved inside upload box */}
           </div>
 
           <div className="cv-enhancer-form-group">
@@ -183,6 +187,17 @@ function CVEnhancer() {
                 <pre style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>{JSON.stringify(result, null, 2)}</pre>
               </div>
             )}
+          </div>
+        </div>
+        <div className="cv-enhancer-preview-box">
+          <div className="cv-enhancer-preview-content">
+            {/* Modern placeholder icon and message */}
+            <svg className="cv-enhancer-preview-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 48 48" stroke="currentColor">
+              <rect x="8" y="8" width="32" height="32" rx="6" fill="#e0e7ff" />
+              <path d="M16 20h16M16 28h10" stroke="#4335A7" strokeWidth="2" strokeLinecap="round" />
+            </svg>
+            <h3 className="cv-enhancer-preview-title">Enhanced CV Preview</h3>
+            <p className="cv-enhancer-preview-text">Your enhanced CV will appear here after processing.</p>
           </div>
         </div>
       </div>

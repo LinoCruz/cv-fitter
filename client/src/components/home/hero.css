@@ -1,8 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Duployan:wght@400;700&display=swap');
 /* hero.css - Blue Theme */
 .hero {
   position: relative;
   padding: 4rem 0;
-  /* Background is transparent to show the gradient */
+  color: #FFF6E9 !important;
 }
 
 .hero-container {
@@ -27,15 +28,17 @@
 .hero-title {
   font-size: 3rem;
   font-weight: 700;
-  color: white;
+  color: #FFF6E9 !important;
   line-height: 1.2;
   margin-bottom: 1.5rem;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.05em;
+    font-family: 'Noto Sans Duployan', 'Inter', 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
+  text-transform: capitalize;
 }
 
 .hero-description {
   font-size: 1.25rem;
-  color: rgba(255, 255, 255, 0.85);
+  color: #FFF6E9 !important;
   margin-bottom: 2rem;
   max-width: 650px;
   margin-left: auto;
@@ -53,26 +56,30 @@
 /* Primary button styled with light gray */
 .hero-button-primary {
   display: inline-block;
-  padding: 0.75rem 1.75rem;
-  background-color: #f3f4f6; /* Light gray */
-  color: #1e3a8a; /* Dark blue */
-  font-weight: 600;
-  border-radius: 9999px;
+  padding: 0.75rem 2rem;
+  background: #FF7F3E !important;
+  color: #FFF6E9 !important;
+  font-weight: bold;
+  border-radius: 24px;
+  font-size: 1.1rem;
   text-align: center;
   text-decoration: none;
-  transition: background-color 0.2s;
+  box-shadow: 0 2px 12px rgba(67,53,167,0.12);
+  border: none;
+  transition: background 0.2s;
 }
 
 .hero-button-primary:hover {
-  background-color: #ffffff;
+  background: #80C4E9 !important;
+  color: #4335A7 !important;
 }
 
 /* Secondary button styled as translucent */
 .hero-button-secondary {
   display: inline-block;
   padding: 0.75rem 1.75rem;
-  background-color: rgba(255, 255, 255, 0.1);
-  color: white;
+  background-color: #80C4E9 !important;
+  color: #4335A7 !important;
   font-weight: 600;
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 9999px;
@@ -83,7 +90,7 @@
 }
 
 .hero-button-secondary:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: #FFF6E9 !important;
 }
 
 .hero-image-column {

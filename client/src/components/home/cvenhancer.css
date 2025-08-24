@@ -1,3 +1,73 @@
+/* Message below upload area */
+.cv-enhancer-upload-message {
+  text-align: center;
+  color: #2563eb;
+  font-size: 0.95rem;
+  margin-top: 0.5rem;
+}
+/* Two-column layout for CV Enhancer */
+.cv-enhancer-main-layout {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.cv-enhancer-card {
+  flex: 1;
+}
+
+.cv-enhancer-preview-box {
+  flex: 1;
+  background: linear-gradient(135deg, #f3f4f6 0%, #e0e7ff 100%);
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 24px rgba(67, 53, 167, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  margin-top: 2rem;
+  border: 2px dashed #80C4E9;
+  border-left: none;
+  border-right: none;
+}
+
+.cv-enhancer-preview-content {
+  text-align: center;
+  color: #4335A7;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.cv-enhancer-preview-icon {
+  width: 4rem;
+  height: 4rem;
+  color: #80C4E9;
+  margin-bottom: 1rem;
+}
+
+.cv-enhancer-preview-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.cv-enhancer-preview-hr {
+  border: none;
+  border-top: 2px dashed #80C4E9;
+  margin: 1.5rem 0;
+}
+
+.cv-enhancer-preview-text {
+  font-size: 1rem;
+  color: #6b7280;
+}
 /* cv-enhancer.css */
 .cv-enhancer {
   padding: 4rem 0;
@@ -67,7 +137,8 @@
 }
 
 .cv-enhancer-upload-text {
-  padding-top: 0.25rem;
+  padding-top: 0rem;
+  margin: 0rem;
   font-size: 0.875rem;
   color: #4b5563;
 }

@@ -1,7 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap');
 /* header.css - Blue Theme */
 .header {
   padding: 1rem 0;
-  background: transparent;
+  background: #FF7F3E !important;
   position: relative;
   z-index: 100; /* Higher than hero but lower than dropdown */
   width: 100%;
@@ -21,10 +22,14 @@
 }
 
 .header-logo {
-  color: white;
-  font-weight: 700;
-  font-size: 1.5rem;
+  color: #FFF6E9 !important;
+  font-family: 'Orbitron', 'Arial Black', Impact, sans-serif !important;
+  font-weight: 900;
+  font-size: 1.5rem !important;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   text-decoration: none;
+  text-shadow: 0 2px 12px rgba(67,53,167,0.18);
 }
 
 .header-nav {
@@ -37,20 +42,20 @@
 }
 
 .header-nav-link {
-  color: rgba(255, 255, 255, 0.85);
+  color: #FFF6E9 !important;
   text-decoration: none;
   transition: color 0.2s ease;
   font-weight: 500;
 }
 
 .header-nav-link:hover {
-  color: #ffffff;
+  color: #4335A7 !important;
 }
 
 /* Style the login button with light gray */
 .header-login-button {
-  background-color: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
+  background-color: #80C4E9 !important;
+  color: #4335A7 !important;
   padding: 0.5rem 1.25rem;
   border-radius: 9999px;
   text-decoration: none;
@@ -60,13 +65,13 @@
 }
 
 .header-login-button:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: #FFF6E9 !important;
 }
 
 /* Style the language toggle button in a light gray */
 .language-toggle-button {
-  background-color: #f3f4f6;
-  color: #1e3a8a;
+  background-color: #FFF6E9 !important;
+  color: #4335A7 !important;
   border: none;
   border-radius: 9999px;
   padding: 0.5rem 0.75rem;
@@ -77,7 +82,7 @@
 }
 
 .language-toggle-button:hover {
-  background-color: #ffffff;
+  background-color: #ffffff !important;
 }
 
 /* Language toggle specific spacing */

@@ -5,10 +5,13 @@
     "login": "Login"
   },
   "footer": {
-    "about": "About",
-    "privacy": "Privacy Policy",
-    "terms": "Terms of Service",
-    "rights": "All rights reserved."
+  "about": "About the Project",
+  "description": "Learn more about the tech specs of the project:",
+  "privacy": "Privacy Policy",
+  "terms": "Terms of Service",
+  "rights": "All rights reserved.",
+  "aboutModal": "CV Fitter is an open-source project designed to help job seekers optimize their CVs for modern recruitment processes. The platform leverages advanced AI models to analyze, enhance, and reformat CVs to increase the chances of passing automated screening systems (ATS).\n\nOur goal is to make professional CV improvement accessible to everyone, regardless of their technical background. We do not store or share your personal data. All processing is done securely and only for the duration of your session.\n\nThe project is built using React for the frontend and Python (Flask) for the backend, with integration to OpenAI models for CV enhancement. You can find the source code and contribute on GitHub.",
+  "privacyModal": "CV Fitter does not store, share, or sell any of your personal data. All CV files and information you upload are processed only in-memory and are never saved on our servers.\n\nHowever, the enhancement process is powered by OpenAI models, which means your CV data is sent to OpenAI's API for analysis and improvement. While OpenAI has strict privacy and security policies, we recommend reviewing their privacy policy for more details: https://openai.com/policies/privacy-policy.\n\nBy using CV Fitter, you acknowledge that your CV data will be processed by OpenAI's models solely for the purpose of providing you with an enhanced CV."
   },
   "hero": {
     "title": "Enhance Your CV For Better Job Opportunities",

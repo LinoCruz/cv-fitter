@@ -18,10 +18,10 @@ body {
   padding: 0;
   width: 100%;
   min-height: 100vh;
-  background-color: #ffffff;
+  background: linear-gradient(180deg, #FFF6E9 0%, #80C4E9 100%) !important;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  color: #1e293b;
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
+  color: #4335A7 !important;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -46,7 +46,7 @@ html, body {
 main {
   flex: 1;
   width: 100%;
-  background-color: #ffffff;
+  background: transparent;
 }
 
 /* Common container style */
@@ -55,13 +55,16 @@ main {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
+  background: rgba(255, 246, 233, 0.85);
+  border-radius: 1.5rem;
 }
 
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
   margin-bottom: 0.5rem;
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1.2;
+  color: #FF7F3E !important;
 }
 
 p {
@@ -69,7 +72,7 @@ p {
 }
 
 a {
-  color: #3b82f6;
+  color: #4335A7 !important;
   text-decoration: none;
 }
 
@@ -90,24 +93,24 @@ a:hover {
 }
 
 .button-primary {
-  background-color: #3b82f6;
-  color: white;
+  background-color: #FF7F3E !important;
+  color: #FFF6E9 !important;
   border: none;
 }
 
 .button-primary:hover {
-  background-color: #2563eb;
+  background-color: #4335A7 !important;
   text-decoration: none;
 }
 
 .button-secondary {
-  background-color: transparent;
-  color: #3b82f6;
-  border: 1px solid #3b82f6;
+  background-color: #80C4E9 !important;
+  color: #4335A7 !important;
+  border: 1px solid #4335A7;
 }
 
 .button-secondary:hover {
-  background-color: #eff6ff;
+  background-color: #FFF6E9 !important;
   text-decoration: none;
 }
 
