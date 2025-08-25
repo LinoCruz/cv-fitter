@@ -23,7 +23,7 @@
     "aiModelLabel": "Modelo de IA",
   "aiModelTooltip": "La selección del modelo puede producir respuestas diferentes, pero todos están diseñados para ayudarte a obtener un CV que pase los sistemas ATS.",
   "aiModelOptions": {
-      "o3": "GPT-o3 (más capaz)",
+      "o3": "GPT-4.1 Mini (para pequeños cambios)",
       "4o": "GPT-4o (equilibrado)",
       "gpt5": "GPT-5 (modelo más nuevo)"
     },

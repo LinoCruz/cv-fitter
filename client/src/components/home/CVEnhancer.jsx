@@ -1,20 +1,21 @@
-import React, { useState } from 'react';
-import { useLanguage } from '../../context/LanguageContext';
-import './cvenhancer.css';
+import React, { useState } from "react";
+import EnhancementResults from "./EnhancementResults";
+import { useLanguage } from "../../context/LanguageContext";
+import "./cvenhancer.css";
 
 function CVEnhancer() {
   const [showTooltip, setShowTooltip] = useState(false);
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [file, setFile] = useState(null);
   const [jobDescription, setJobDescription] = useState("");
-  const [model, setModel] = useState("o3");
+  const [model, setModel] = useState("gpt-4.1-mini");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [result, setResult] = useState(null);
   const modelOptions = [
-    { value: "o3", label: t.cvEnhancer.aiModelOptions.o3 },
-    { value: "4o", label: t.cvEnhancer.aiModelOptions["4o"] },
-    { value: "gpt-5", label: t.cvEnhancer.aiModelOptions.gpt5 }
+    { value: "gpt-4.1-mini", label: t.cvEnhancer.aiModelOptions["o3"] || "GPT-4.1 Mini" },
+    { value: "gpt-4o", label: t.cvEnhancer.aiModelOptions["4o"] || "GPT-4o" },
+    { value: "gpt-5", label: t.cvEnhancer.aiModelOptions["gpt5"] || "GPT-5" },
   ];
 
   // Handle file input change
@@ -49,11 +50,10 @@ function CVEnhancer() {
     setLoading(true);
     try {
       const formData = new FormData();
-  formData.append("file", file);
-  formData.append("job_description", jobDescription);
-  formData.append("model", model);
-      // You can add language if needed
-      // formData.append("language", "en");
+      formData.append("file", file);
+      formData.append("job_description", jobDescription);
+      formData.append("model", model);
+      formData.append("language", language);
 
       const response = await fetch("/api/enhance-cv", {
         method: "POST",
@@ -71,14 +71,12 @@ function CVEnhancer() {
       setLoading(false);
     }
   };
-  
+
   return (
     <section id="cv-enhancer" className="cv-enhancer">
       <div className="cv-enhancer-main-layout">
         <div className="cv-enhancer-card">
-          <h2 className="cv-enhancer-title">
-            {t.cvEnhancer.title}
-          </h2>
+          <h2 className="cv-enhancer-title">{t.cvEnhancer.title}</h2>
           {/* ...existing form code... */}
           <div className="cv-enhancer-form-group">
             <label className="cv-enhancer-label">
@@ -87,19 +85,37 @@ function CVEnhancer() {
             <div className="cv-enhancer-upload-wrapper">
               <label className="cv-enhancer-upload-area">
                 <div className="cv-enhancer-upload-content">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="cv-enhancer-upload-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="cv-enhancer-upload-icon"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+                    />
                   </svg>
                   <p className="cv-enhancer-upload-text">
                     {file ? file.name : t.cvEnhancer.uploadText}
                   </p>
-                  <span className="cv-enhancer-upload-message" style={{fontSize: '0.9rem', color: '#2563eb', display: 'block'}}>
+                  <span
+                    className="cv-enhancer-upload-message"
+                    style={{
+                      fontSize: "0.9rem",
+                      color: "#2563eb",
+                      display: "block",
+                    }}
+                  >
                     (Only PDF and .Doc files are accepted)
                   </span>
                 </div>
-                <input 
-                  type="file" 
-                  className="cv-enhancer-upload-input" 
+                <input
+                  type="file"
+                  className="cv-enhancer-upload-input"
                   onChange={handleFileChange}
                   accept=".pdf,.doc,.docx"
                 />
@@ -109,34 +125,50 @@ function CVEnhancer() {
           </div>
 
           <div className="cv-enhancer-form-group">
-            <label htmlFor="ai-model" className="cv-enhancer-label" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <label
+              htmlFor="ai-model"
+              className="cv-enhancer-label"
+              style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}
+            >
               {t.cvEnhancer.aiModelLabel}
               <span
-                style={{ position: 'relative', cursor: 'pointer' }}
+                style={{ position: "relative", cursor: "pointer" }}
                 onMouseEnter={() => setShowTooltip(true)}
                 onMouseLeave={() => setShowTooltip(false)}
               >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ verticalAlign: 'middle' }}>
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  style={{ verticalAlign: "middle" }}
+                >
                   <circle cx="12" cy="12" r="10" />
                   <line x1="12" y1="16" x2="12" y2="12" />
                   <line x1="12" y1="8" x2="12" y2="8" />
                 </svg>
                 {showTooltip && (
-                  <span style={{
-                    background: 'rgba(128,128,128,0.85)',
-                    color: '#fff',
-                    textAlign: 'left',
-                    borderRadius: '4px',
-                    padding: '8px',
-                    position: 'absolute',
-                    zIndex: 10,
-                    left: '20px',
-                    top: '-10px',
-                    width: '220px',
-                    fontSize: '0.75rem',
-                    boxShadow: 'none',
-                    border: '1px solid #ccc'
-                  }}>
+                  <span
+                    style={{
+                      background: "rgba(128,128,128,0.85)",
+                      color: "#fff",
+                      textAlign: "left",
+                      borderRadius: "4px",
+                      padding: "8px",
+                      position: "absolute",
+                      zIndex: 10,
+                      left: "20px",
+                      top: "-10px",
+                      width: "220px",
+                      fontSize: "0.75rem",
+                      boxShadow: "none",
+                      border: "1px solid #ccc",
+                    }}
+                  >
                     {t.cvEnhancer.aiModelTooltip}
                   </span>
                 )}
@@ -147,16 +179,16 @@ function CVEnhancer() {
               className="cv-enhancer-select"
               value={model}
               onChange={handleModelChange}
-              style={{ marginTop: '0.5rem' }}
+              style={{ marginTop: "0.5rem" }}
             >
-              {modelOptions.map(opt => (
+              {modelOptions.map((opt) => (
                 <option key={opt.value} value={opt.value}>
                   {opt.label}
                 </option>
               ))}
             </select>
           </div>
-          
+
           <div className="cv-enhancer-form-group">
             <label htmlFor="job-description" className="cv-enhancer-label">
               {t.cvEnhancer.jobDescriptionLabel}
@@ -170,7 +202,7 @@ function CVEnhancer() {
               onChange={handleJobDescriptionChange}
             ></textarea>
           </div>
-          
+
           <div className="cv-enhancer-button-container">
             <button
               type="button"
@@ -180,25 +212,55 @@ function CVEnhancer() {
             >
               {loading ? "Enhancing..." : t.cvEnhancer.buttonText}
             </button>
-            {error && <div style={{ color: 'red', marginTop: 8 }}>{error}</div>}
-            {result && (
-              <div style={{ marginTop: 16 }}>
-                <h3>Enhanced CV Results</h3>
-                <pre style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>{JSON.stringify(result, null, 2)}</pre>
-              </div>
-            )}
+            {error && <div style={{ color: "red", marginTop: 8 }}>{error}</div>}
           </div>
         </div>
         <div className="cv-enhancer-preview-box">
-          <div className="cv-enhancer-preview-content">
-            {/* Modern placeholder icon and message */}
-            <svg className="cv-enhancer-preview-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 48 48" stroke="currentColor">
-              <rect x="8" y="8" width="32" height="32" rx="6" fill="#e0e7ff" />
-              <path d="M16 20h16M16 28h10" stroke="#4335A7" strokeWidth="2" strokeLinecap="round" />
-            </svg>
-            <h3 className="cv-enhancer-preview-title">Enhanced CV Preview</h3>
-            <p className="cv-enhancer-preview-text">Your enhanced CV will appear here after processing.</p>
-          </div>
+          {/* Show enhancement results in the preview box if available, else show placeholder */}
+          {result ? (
+            <div
+              className="cv-enhancer-preview-content"
+              style={{ width: "100%" }}
+            >
+              {/* Use the EnhancementResults component for rendering */}
+              {/* originalFile and onReset can be passed if needed */}
+              {/* import EnhancementResults at the top if not already imported */}
+              <EnhancementResults
+                result={result}
+                originalFile={file}
+                onReset={() => setResult(null)}
+              />
+            </div>
+          ) : (
+            <div className="cv-enhancer-preview-content">
+              <svg
+                className="cv-enhancer-preview-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 48 48"
+                stroke="currentColor"
+              >
+                <rect
+                  x="8"
+                  y="8"
+                  width="32"
+                  height="32"
+                  rx="6"
+                  fill="#e0e7ff"
+                />
+                <path
+                  d="M16 20h16M16 28h10"
+                  stroke="#4335A7"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+              </svg>
+              <h3 className="cv-enhancer-preview-title">Enhanced CV Preview</h3>
+              <p className="cv-enhancer-preview-text">
+                Your enhanced CV will appear here after processing.
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </section>

@@ -28,10 +28,12 @@ def register_cv_routes(app):
         if not validate_job_description(job_description):
             return jsonify({'error': 'Invalid or missing job description'}), 400
             
-        # Get language context (default to English)
+        # Get language and model from form
         language = request.form.get('language', 'en')
+        model = request.form.get('model', '4.1')
         language_context = get_language_context(language)
-        
+        language_context['model'] = model
+            
         # Validate file extension
         if not validate_file_extension(file.filename):
             return jsonify({'error': 'File must be a PDF'}), 400
